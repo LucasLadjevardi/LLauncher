@@ -17,7 +17,7 @@ ApplicationWindow{
 
     Rectangle {
         id: toolTip
-        height: 25
+        height: 35
         color: Material.color(Material.Green)
         anchors{
             left: parent.left
@@ -29,11 +29,12 @@ ApplicationWindow{
             id: loginPageText
             font.pointSize: 12
             anchors{
+                verticalCenter: parent.verticalCenter
                 left: parent.left
                 topMargin: 5
                 leftMargin: 5
             }
-            text: qsTr("Login Page")
+            text: qsTr("LOR Launcher")
         }
         
         Button {
@@ -42,6 +43,7 @@ ApplicationWindow{
             height: 15
             anchors{
                 right: parent.right
+                rightMargin: 5
                 verticalCenter: parent.verticalCenter
             }
             background: Rectangle {
@@ -97,8 +99,9 @@ ApplicationWindow{
     }
 
     Item {
-        width: 124
-        height: 124
+        id: logoHolder
+        width: 120
+        height: 120
         anchors{
             horizontalCenter: parent.horizontalCenter
             top: toolTip.bottom
@@ -114,6 +117,58 @@ ApplicationWindow{
             anchors.fill: logo
             source: logo
             color: Material.color(Material.Green)
+        }
+    }        
+    Text {
+        id: loginText
+        font.pointSize: 16
+        color: Material.color(Material.Green)
+        anchors{
+            horizontalCenter: parent.horizontalCenter
+            verticalCenter: parent.verticalCenter
+            top: logoHolder.bottom
+            topMargin: 40
+        }
+        text: qsTr("Login")
+    }
+
+    TextField {
+        id: usernameField
+        width: 300
+        text: qsTr("")
+        selectByMouse: true
+        placeholderText: qsTr("Username")
+        verticalAlignment: text.AlignVCenter
+        anchors{
+            horizontalCenter: parent.horizontalCenter
+            top: loginText.bottom
+            topMargin: 10
+        }
+    }
+
+    TextField {
+        id: passwordField
+        width: 300
+        text: qsTr("")
+        selectByMouse: true
+        placeholderText: qsTr("Password")
+        verticalAlignment: text.AlignVCenter
+        anchors{
+            horizontalCenter: parent.horizontalCenter
+            top: usernameField.bottom
+            topMargin: 10
+        }
+        echoMode: TextInput.Password
+    }
+
+    Rectangle {        
+        id: footer
+        height: 35
+        color: Material.color(Material.Green)
+        anchors{
+            left: parent.left
+            bottom: parent.bottom
+            right: parent.right
         }
     }
 }
