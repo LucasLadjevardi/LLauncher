@@ -161,6 +161,31 @@ ApplicationWindow{
         echoMode: TextInput.Password
     }
 
+    Button {
+        id:logonButton
+        width: 300
+        height: 50
+        text: qsTr("Login")
+        /*background: Rectangle {
+            /*color: Material.color(Material.Green)
+            implicitWidth: 100
+            implicitHeight: 25
+            border.width: control.activeFocus ? 2 : 1
+            border.color: "#888"
+            radius: 4
+            gradient: Gradient {
+                GradientStop { position: 0 ; color: control.pressed ? "#ccc" : "#eee" }
+                GradientStop { position: 1 ; color: control.pressed ? "#aaa" : "#ccc" }
+            }
+        }*/
+        
+        anchors{
+            horizontalCenter: parent.horizontalCenter
+            top: passwordField.bottom
+            topMargin: 20
+        }
+    }
+
     Rectangle {        
         id: footer
         height: 35
@@ -169,6 +194,17 @@ ApplicationWindow{
             left: parent.left
             bottom: parent.bottom
             right: parent.right
+        }
+        Text {
+            id: link
+            text: '<html><style type="text/css"></style><a href="http://google.com">Can´t sign-in?</a></html>'
+            font.pointSize: 10
+            anchors{
+                horizontalCenter: parent.horizontalCenter
+                verticalCenter: parent.verticalCenter
+                topMargin: 5
+            }
+            onLinkActivated: Qt.openUrlExternally(link)
         }
     }
 }
