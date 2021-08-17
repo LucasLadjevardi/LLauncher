@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Controls.Material 2.15
+import Qt5Compat.GraphicalEffects
 
 ApplicationWindow{
     id: loginView
@@ -23,6 +24,7 @@ ApplicationWindow{
             top: parent.top
             right: parent.right
         }
+        
         Text {
             id: loginPageText
             font.pointSize: 12
@@ -33,12 +35,14 @@ ApplicationWindow{
             }
             text: qsTr("Login Page")
         }
+        
         Button {
             id: exitWindow
             width: 15
             height: 15
             anchors{
                 right: parent.right
+                verticalCenter: parent.verticalCenter
             }
             background: Rectangle {
             color: "transparent"
@@ -50,14 +54,15 @@ ApplicationWindow{
             }
             onClicked: Qt.quit()
         }
+        
         Button {
             id: maximizeWindow
             width: 15
             height: 15
             anchors{ 
                 right: exitWindow.left
-                rightMargin: 5
-                topMargin: 5
+                verticalCenter: parent.verticalCenter
+                rightMargin: 5 
             }
             background: Rectangle {
             color: "transparent"
@@ -69,6 +74,7 @@ ApplicationWindow{
             }
             onClicked: Qt.maximize()
         }
+        
         Button {
             id: minimizeWindow
             width: 15
@@ -76,7 +82,7 @@ ApplicationWindow{
             anchors{
                 right: maximizeWindow.left
                 rightMargin: 5
-                topMargin: 5
+                verticalCenter: parent.verticalCenter
             }
             background: Rectangle {
             color: "transparent"
@@ -87,6 +93,27 @@ ApplicationWindow{
                 fillMode: Image.PreserveAspectFit
             }
             onClicked: Qt.maximize()
+        }
+    }
+
+    Item {
+        width: 124
+        height: 124
+        anchors{
+            horizontalCenter: parent.horizontalCenter
+            top: toolTip.bottom
+            topMargin: 40
+        }
+        Image {
+            id: logo
+            width: 124
+            height: 124
+            source: "../Images/battle-net-brands.svg"
+        }
+        ColorOverlay{
+            anchors.fill: logo
+            source: logo
+            color: Material.color(Material.Green)
         }
     }
 }
