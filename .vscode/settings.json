@@ -1,5 +1,7 @@
 {
     "python.analysis.extraPaths": [
-        "./Classes"
+        "./Classes",
+        "./ViewModels",
+        "./Models"
     ]
 }

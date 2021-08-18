@@ -165,11 +165,30 @@ ApplicationWindow{
         id:logonButton
         width: 300
         height: 50
+        focus: true
+        checked: false
         text: qsTr("Login")
         anchors{
             horizontalCenter: parent.horizontalCenter
             top: passwordField.bottom
             topMargin: 20
+        }
+        Keys.onPressed: {
+            if (event.key == Qt.Key_Return) {
+                console.log("Key Enter was pressed");
+                event.accepted = true;
+                ModelLogin.onLogin(usernameField.text, passwordField.text, buttonLogin.checked)
+            }
+            if (event.key == Qt.Key_Space) {
+                console.log("Key Space was pressed");  
+            }
+        }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                console.log("Mouse click pressed");
+                ModelLogin.onLogin(usernameField.text, passwordField.text, buttonLogin.checked) 
+            }
         }
     }
 
