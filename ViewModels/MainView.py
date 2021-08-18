@@ -1,19 +1,23 @@
 import sys
 import os
-import Login
 
 # Modules
+from Models import Login
 from PySide6.QtGui import *
 from PySide6.QtQml import *
-from PySide6.QtCore import Signal
+from PySide6.QtCore import *
 
-# Signal
-onChangeWindow = Signal(bool)
+class mainView(QObject):
+    def __init__(self):
+        QObject.__init__(self)
 
+    # Signal
+    onChangeWindow = Signal(bool)
 
-def onChangeProp(closeWindow):
-    engine.load(os.path.join(os.path.dirname(__file__), "../QML/Main.qml"))
-    onChangeWindow.emit(closeWindow)
+    @Slot(bool)
+    def onChangeProp(self, closeWindow):
+        engine.load(os.path.join(os.path.dirname(__file__), "../QML/Main.qml"))
+        self.onChangeWindow.emit(closeWindow)
 
 
 # Instance Class
