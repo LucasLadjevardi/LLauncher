@@ -177,7 +177,7 @@ ApplicationWindow{
             if (event.key == Qt.Key_Return) {
                 console.log("Key Enter was pressed");
                 event.accepted = true;
-                ModelLogin.onLogin(usernameField.text, passwordField.text, buttonLogin.checked)
+                mlogin.onLogin(usernameField.text, passwordField.text, logonButton.checked)
             }
             if (event.key == Qt.Key_Space) {
                 console.log("Key Space was pressed");  
@@ -187,7 +187,7 @@ ApplicationWindow{
             anchors.fill: parent
             onClicked: {
                 console.log("Mouse click pressed");
-                ModelLogin.onLogin(usernameField.text, passwordField.text, buttonLogin.checked) 
+                mlogin.onLogin(usernameField.text, passwordField.text, logonButton.checked) 
             }
         }
     }
@@ -211,6 +211,14 @@ ApplicationWindow{
                 topMargin: 5
             }
             onLinkActivated: Qt.openUrlExternally(link)
+        }
+    }
+
+    Connections{
+        target: mlogin
+
+        function changeWindow(isVisible){
+            loginView.visible = isVisible
         }
     }
 }

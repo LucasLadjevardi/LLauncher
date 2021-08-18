@@ -24,7 +24,7 @@ class apiBox(QObject):
         r=requests.post(url=url, data=data, headers=headers)
         #SAVE TOKEN
         self.token = int(r.text)
-        #print(self.token) # USED FOR CHECKING # SAVE FOR LATER
+        print(self.token) # USED FOR CHECKING # SAVE FOR LATER
 
     def getFriends(self):
         tknId = self.token
