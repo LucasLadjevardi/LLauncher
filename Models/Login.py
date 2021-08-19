@@ -1,7 +1,6 @@
 import MainView
 
 from PySide6.QtGui import *
-from PySide6.QtQml import QQmlApplicationEngine
 from PySide6.QtCore import *
 from PySide6.QtWidgets import *
 from Classes import Toolbox
@@ -21,6 +20,7 @@ class LoginModel(QObject):
         self.toolBox.postLogin(user, passw)
         # Window change if callback returns token
         if self.toolBox.token != "0" and self.toolBox.token != "" and self.toolBox.token != None:
-            MainView.mainView.main(2)
             self.changeWindow.emit(closeWindow)
+            MainView.mainView.main(2)
+            
             

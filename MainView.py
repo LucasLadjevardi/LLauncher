@@ -13,7 +13,6 @@ class mainView():
     def main(nr):
 
         if nr == 0:
-            app = QGuiApplication(sys.argv)
             nr = 1
 
         engine = QQmlApplicationEngine()
@@ -25,7 +24,7 @@ class mainView():
             engine.load(os.path.join(os.path.dirname(__file__), "QML/Login.qml"))
 
         def onChanged():
-            engine.load(os.path.join(os.path.dirname(__file__), "QML/Home.qml"))
+            engine.load(os.path.join(os.path.dirname(__file__), "QML/Main.qml"))
         if nr == 1:
             runningCode()
         if nr == 2:
@@ -39,4 +38,5 @@ class mainView():
         
 # Instance Class
 if __name__ == "__main__":
+    app = QGuiApplication(sys.argv)
     mainView.main(0)
