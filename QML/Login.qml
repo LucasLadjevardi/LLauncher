@@ -15,6 +15,17 @@ ApplicationWindow{
     Material.theme: Material.Dark
     Material.accent: Material.Green
 
+    MouseArea {
+        anchors.fill: parent
+        onPressed: { pos = Qt.point(mouse.x, mouse.y) }
+        onPositionChanged: {
+            var diff = Qt.point(mouse.x - pos.x, mouse.y - pos.y)
+            ApplicationWindow.window.x += diff.x
+            ApplicationWindow.window.y += diff.y
+        }
+        property point pos
+    }
+
     Rectangle {
         id: toolTip
         height: 35
@@ -100,8 +111,8 @@ ApplicationWindow{
 
     Item {
         id: logoHolder
-        width: 120
-        height: 120
+        width: 64
+        height: 64
         anchors{
             horizontalCenter: parent.horizontalCenter
             top: toolTip.bottom
@@ -109,8 +120,8 @@ ApplicationWindow{
         }
         Image {
             id: logo
-            width: 124
-            height: 124
+            width: 64
+            height: 64
             source: "../Images/battle-net-brands.svg"
         }
         ColorOverlay{
@@ -125,9 +136,9 @@ ApplicationWindow{
         color: Material.color(Material.Green)
         anchors{
             horizontalCenter: parent.horizontalCenter
-            verticalCenter: parent.verticalCenter
+            //verticalCenter: parent.verticalCenter
             top: logoHolder.bottom
-            topMargin: 40
+            topMargin: 15
         }
         text: qsTr("Login")
     }
@@ -138,11 +149,11 @@ ApplicationWindow{
         text: qsTr("")
         selectByMouse: true
         placeholderText: qsTr("Username")
-        verticalAlignment: text.AlignVCenter
+        //verticalAlignment: text.AlignVCenter
         anchors{
             horizontalCenter: parent.horizontalCenter
             top: loginText.bottom
-            topMargin: 10
+            topMargin: 20
         }
     }
 
@@ -152,7 +163,6 @@ ApplicationWindow{
         text: qsTr("")
         selectByMouse: true
         placeholderText: qsTr("Password")
-        verticalAlignment: text.AlignVCenter
         anchors{
             horizontalCenter: parent.horizontalCenter
             top: usernameField.bottom
@@ -217,7 +227,8 @@ ApplicationWindow{
     Connections{
         target: mlogin
 
-        function changeWindow(isVisible){
+        function onChangeWindow(isVisible){
+            console.log(isVisible);
             loginView.visible = isVisible
         }
     }
