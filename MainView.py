@@ -2,7 +2,7 @@ import sys
 import os
 
 # Modules
-from Models import Login
+from Models import Login,Main
 from PySide6.QtGui import *
 from PySide6.QtQml import *
 from PySide6.QtCore import *
@@ -17,7 +17,9 @@ class mainView():
 
         engine = QQmlApplicationEngine()
         loginModel = Login.LoginModel()
+        mainModel = Main.LoginModel()
         engine.rootContext().setContextProperty("mlogin", loginModel)
+        engine.rootContext().setContextProperty("mmain", mainModel)
 
         def runningCode():
             #Connection to QML
