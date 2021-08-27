@@ -19,13 +19,7 @@ ApplicationWindow{
         ListModel {
         id: nameModel
             ListElement{
-                name: "Bill"
-            }
-            ListElement{
-                name: "John"
-            }
-            ListElement{
-                name: "Harry"
+                name: ""
             }
         }
         Component {
@@ -42,7 +36,6 @@ ApplicationWindow{
             anchors.fill: parent
             model: nameModel
             delegate: contactDelegate
-            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
             focus: true
         }
     }
