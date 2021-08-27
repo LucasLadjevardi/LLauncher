@@ -34,7 +34,6 @@ ApplicationWindow{
                 width: 180; height: 40
                 Column {
                     Text { text: '<b>Name:</b> ' + name }
-                    Text { text: '<b>Number:</b> ' + number }
                 }
             }
         }
@@ -45,6 +44,14 @@ ApplicationWindow{
             delegate: contactDelegate
             highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
             focus: true
+        }
+    }
+    Connections{
+        target: mmain
+        
+        function onListSignal(fList) {
+            console.log(fList);
+            nameModel.append({"name": fList})            
         }
     }
 }

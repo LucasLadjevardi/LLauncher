@@ -21,6 +21,7 @@ class LoginModel(QObject):
         # Window change if callback returns token
         if self.toolBox.token != "0" and self.toolBox.token != "" and self.toolBox.token != None:
             self.changeWindow.emit(closeWindow)
+            MainView.usertoken = self.toolBox.token 
             MainView.mainView.main(2)
             
             

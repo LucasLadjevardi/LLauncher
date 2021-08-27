@@ -8,37 +8,39 @@ from PySide6.QtQml import *
 from PySide6.QtCore import *
 
 
+usertoken = int
 class mainView():
 
+    
     def main(nr):
 
-        if nr == 0:
-            nr = 1
-
-        engine = QQmlApplicationEngine()
+        engine = QQmlApplicationEngine()        
         loginModel = Login.LoginModel()
-        mainModel = Main.LoginModel()
-        engine.rootContext().setContextProperty("mlogin", loginModel)
-        engine.rootContext().setContextProperty("mmain", mainModel)
+       
 
-        def runningCode():
+        def loadLogin():
             #Connection to QML
+            
+            engine.rootContext().setContextProperty("mlogin", loginModel)
             engine.load(os.path.join(os.path.dirname(__file__), "QML/Login.qml"))
 
-        def onChanged():
+        def loadMain():
+            mainModel = Main.MainModel()
+            engine.rootContext().setContextProperty("mmain", mainModel)
             engine.load(os.path.join(os.path.dirname(__file__), "QML/Main.qml"))
+            mainModel.callApi(usertoken)
         if nr == 1:
-            runningCode()
+            loadLogin()
         if nr == 2:
-            onChanged()
+            loadMain()
         
         if not engine.rootObjects():
                 sys.exit(-1)
-        sys.exit(app.exec_())
+        sys.exit(app.exec())
         
         
         
 # Instance Class
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
-    mainView.main(0)
+    mainView.main(1)

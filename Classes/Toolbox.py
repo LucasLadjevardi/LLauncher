@@ -28,7 +28,7 @@ class apiBox(QObject):
 
     def getFriends(self):
         tknId = self.token
-        print(tknId)
+        print("nu er vi i api " + str(tknId))
         self.fList=[]
         #API URL
         url = 'http://192.168.4.231:48935/api/FriendsList/Friends/'+str(tknId)
